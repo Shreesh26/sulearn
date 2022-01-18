@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-)hhf_*zwuyhn57^csxwn1m1!s4z7_h@!j8@wq%prb&^e=gummh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1:8000', 'sulearn.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'sulearn.herokuapp.com']
 
 
 # Application definition
@@ -90,8 +90,13 @@ WSGI_APPLICATION = 'SULearn.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd2c3cokcqjp08d',
+        'USER': 'zdxuvvbxifaoqv',
+        'PASSWORD': '72fe5e7db48ab9244a7b30c629c2586d812ad152698e78a174da9770cc5cf99a',
+        'HOST':'ec2-18-206-20-102.compute-1.amazonaws.com',
+        'PORT': '5432',
+
     }
 }
 
