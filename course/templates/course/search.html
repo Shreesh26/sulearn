@@ -1,0 +1,32 @@
+{% extends "course/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<br><br><br>
+<div class="w3-container">
+
+{% if datas|length < 1 %}
+<h1>No Result Found</h1>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endif %}
+{% for data in datas %}
+    <form action="/course/" method="GET">
+    <div class="w3-display-container w3-col s12 m12 l12 w3-section hover_trans_mustard">
+      <button type="submit" class="w3-transparent " style="margin: 5px; cursor: pointer; border: 0;"
+        onclick="document.getElementById('{{data.title}}').style.display='block'" name="s" value="{{data.pk}}">
+        <div class="w3-transparent" style=" width: 70%; float: right;">
+          <center>
+            <h3>{{data.title}}</h3>
+          </center>
+          <p style="float: right; color: rgb(51, 48, 48);"><i>by-</i>{{data.instructor.name}}</p>
+          <br> <p>{{data.description | safe | slice:":300"}}...</p>
+        </div>
+       
+      </div>
+    
+    
+  </form>
+    {% endfor %}
+</div>
+{% endblock %}

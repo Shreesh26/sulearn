@@ -1,0 +1,252 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+<title> SULearn </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="{% static 'course/glogo.gif' %}">
+<link rel="stylesheet" href="{% static 'course/stylesheet.css' %}">
+<link rel="stylesheet" href="{% static 'course/style.css' %}">
+<link rel="stylesheet" href="{% static 'course/stylesheet1.css' %}">
+<link rel="stylesheet" href="{% static 'course/css/bootstrap.min.css' %}">
+<script src="{% static 'course/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'course/ckeditor/ckeditor.js' %}"></script>
+
+    <script src="{% static 'course/popper.min.js' %}"></script>
+    <script src="{% static 'course/js/bootstrap.bundle.min.js' %}" ></script>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+    <link rel="stylesheet" href="{% static 'stylesheet1.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'ckeditor/ckeditor.js' %}"></script>
+  
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </head>
+  
+  <style>
+    .section1 {
+      position: relative;
+      background: #F1F5F8;
+      width: 100%;
+      height: 0px;
+    }
+  
+    .section1 h2 {
+      text-align: center;
+      font-size: 40px;
+    }
+  
+    .section1 p {
+      text-align: center;
+      padding: 0px 70px;
+      color: grey;
+    }
+  
+    .sticky-social {
+      position: fixed;
+      top: 35%;
+      right: 0px;
+      padding: 0px;
+      margin: 0px;
+      z-index: 30;
+    }
+  
+    .social {
+      list-style: none;
+    }
+  
+    .social li {
+      padding: 10px 10px;
+      font-size: 25px;
+      transition: all 0.8s ease-in-out;
+    }
+  
+    .social li:hover {
+      margin-left: -30px;
+      box-shadow: 2px 5px 10px grey;
+    }
+  
+    .social li:hover .fa {
+      margin-left: 20px;
+  
+    }
+  
+    .fa {
+      color: #fff;
+      transition: all 0.8s ease-in-out;
+    }
+  
+    .fb {
+      background-color: #3C5A98;
+    }
+  
+    .twitter {
+      background-color: #1EA1F2;
+    }
+  
+    .insta {
+      background-color: #DC4F42;
+    }
+  
+    .pin {
+      background-color: #CB2128;
+    }
+  
+    .vim {
+      background-color: #59BFBE;
+    }
+  </style>
+   </head> 
+
+
+
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"><img src="{% static 'course/glogo.gif' %}" class="d-inline-block align-text-center">  SULearn</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/course_page/">All Courses</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button"  aria-expanded="false">
+                  Course Areas
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link w3-button" href="/contact/" tabindex="-1" aria-disabled="false" style="text-align: left;">Contact</a>
+              </li>
+
+            {% if request.user.is_authenticated %}
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Welcome <b>{{request.user}}</b>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/certificate_page/">View my certificates</a></li>
+                <li><a class="dropdown-item" href="#">Forum</a></li>
+                <li><a class="dropdown-item" href="/details/">User Details</a></li>
+                {% if perms.course.add_course %}
+                <li><a class="dropdown-item" href="/add_course/">Add a Course</a></li>
+                {% endif %}
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/accounts/logout/">Log Out</a></li>
+              </ul>
+            </li>
+
+
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link w3-button" href="/accounts/login/" tabindex="-1" aria-disabled="false">Log In</a>
+              </li>
+            {% endif %}
+              
+            </ul>
+            
+            <div class="search1">
+                <button id="click" class="search-btn w3-right w3-large">
+                    &#128269;
+                </button>
+
+                <form id="search-field" class="search-field1 w3-right" action="/search/" style="z-index: 5;">
+                    <input type="text" placeholder="Search Website" name="search">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            
+          </div>
+
+          
+        </div>
+      </nav>
+      {% if messages %}
+
+      {% for message in messages %}
+      {% if message.tags == "success" %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+          <b>Message: </b> {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endif %}
+      {% if message.tags == "error" %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <b>Message: </b> {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endif %}
+      {% if message.tags == "warning" %}
+      <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
+          <b>Message: </b> {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endif %}
+      
+      {% endfor %}
+      {% endif %}
+        
+
+
+
+    <script>
+        document.getElementById("click").addEventListener("click", function () {
+            document.getElementById("search-field").classList.toggle("form-active")
+        });
+
+        function w3_open() {
+            document.getElementById("mySidebar").style.display = "block";
+            document.getElementById("myOverlay").style.display = "block";
+            document.getElementById("mySidebar").className.replace(" w3-animate-right", " w3-animate-left")
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").className.replace(" w3-animate-left", " w3-animate-right")
+            document.getElementById("mySidebar").style.display = "none";
+            document.getElementById("myOverlay").style.display = "none";
+
+        }
+    </script>
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+    {% block content %}
+    {% endblock %}
+
+
+
+    {% block footer %}
+    <div class="w3-container w3-text-white" style="background-color: rgba(0,0,0,0.7);width: 100%; bottom: 0;">
+        <h5>Developed By: <a href="https://www.linkedin.com/in/shreesh-gupta-3b7b57205/" style="text-decoration: none; color: white;"><i>Shreesh Gupta</i></a></h5>
+    </div>
+
+
+
+
+
+</body>
+
+</html>
+{% endblock %}

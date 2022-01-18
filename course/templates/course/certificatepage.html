@@ -1,0 +1,9 @@
+{% extends "course/base.html" %}
+{% load static %}
+{% block content %}
+<h1><center>CERTIFICATE</center></h1>
+{% for data in datas %}
+<h2>This is to certify that {{data.name}} has completed the course {{data.course}}</h2>
+{% endfor %}
+
+{% endblock %}

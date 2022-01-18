@@ -1,0 +1,31 @@
+{% extends "course/base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="w3-row-padding w3-margin-left w3-center">
+    {% for data in datas %}
+        <form action="/course/" method="GET">
+        <div class="w3-display-container w3-col s12 m4 l4 w3-section">
+          <div class="card" style="width: 30rem; height: 30rem;">
+            <div class="card-body hover_trans_grey">
+              <h5 class="card-title">{{data.title}}</h5>
+              <h6 class='card-title'>Uploaded by {{data.instructor.name}}</h6>
+              <h6>Areas:{% for area in data.areas.all %}
+                {{area.area}},
+                {% endfor%}
+            </h6>
+              <!--<p class="card-text">Video provides a powerful way to help you prove your point. When you click Online Video, you can paste in the embed code for the video you want to add. </p>-->
+              <h5 class="card-text" style="font-weight: 510; font-family: Bell Mt;">{{ data.description | safe | slice:":150"}} ...</h5>
+              <button type="submit" class="btn btn-primary w3-button" name="s" value="{{data.pk}}">Go to Course</button>
+            </div>
+          </div>
+          
+           
+          </div>
+        
+        
+      </form>
+        {% endfor %}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "course/base.html" %}
+{% load static %}
+{% block content %}
+
+<br>
+<div class="modal-body" style="width: 40%;">
+  <form method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+
+{{ form.as_p }}
+
+<button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <script>CKEDITOR.replace('about');</script>
+</div>
+
+{% endblock %}

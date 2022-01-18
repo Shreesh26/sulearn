@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="modal-body" style="width: 40%;">
+    <form action="/enter/" method="POST">
+        {% csrf_token %}
+
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Username</label>
+    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Username" name="un">
+  </div>
+  <div class="mb-3">
+    <label for="inputPassword" class="form-label">Password</label>
+      <input type="password" class="form-control" id="inputPassword" placeholder="Create Password" name="pass">
+  </div>
+
+
+    <button type="submit" class="w3-button" style="background-color:  rgb(129, 175, 129); color: white;">Log In</button>
+    <button type="reset" class="w3-button" > Reset</button>
+
+</form>
+
+
+</div>
+
+{% endblock %}

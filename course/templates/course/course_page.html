@@ -1,0 +1,30 @@
+{% extends "course/base.html" %}
+{% load static %}
+{% block content %}
+
+<br><br>
+<center>
+    <h1>{{datas.title}}</h1>
+</center>
+<h4 style="text-align: right;">by {{datas.instructor.name}}</h4>
+<h6>Areas:{% for area in datas.areas.all %}
+    {{area.area}},
+    {% endfor%}
+</h6>
+<h3>ABOUT THE COURSE</h3>
+
+<p>{{datas.description | safe}}</p>
+{% if request.user.is_authenticated %}
+<form action="/enroll/" method="GET">
+<a class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center btn btn-outline-info" href="/enroll/?s={{datas.id}}&nm={{datas.title}}">Enorll</a>
+</form>
+<form action="/certificate/" method="GET">
+<a class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center btn btn-outline-info" href="/certificate/?s={{datas.id}}">Generate Certificate</a>
+</form>
+<a class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center btn btn-outline-info" href="{{datas.material}}">Access Resources</a>
+{% else %}
+<a class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center btn btn-outline-info" href="/accounts/login">Sign In</a>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends "course/base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+    background: rgb(99, 39, 120)
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+</style>
+{% for data in datas %}
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">{{data.name}}'s Profile</h4>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-6"><label class="labels">Name </label><br>{{data.name}}</div>
+                    <div class="col-md-6"><label class="labels">Username</label><br>{{data.username}}</div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12"><label class="labels">City</label><br>{{data.city}}</div>
+                    
+                    <div class="col-md-12"><label class="labels">State</label><br>{{data.state}}</div>
+                    <div class="col-md-12"><label class="labels">About {{data.name}}</label><br>{{data.about | safe}}</div>
+                </div>
+               
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center experience"><span>COURSES</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
+                <div class="col-md-12"><label class="labels">Enrolled Courses</label>
+                    {% for course in courses %}
+                    <form action="/course/" method="GET">
+                        <div class="w3-display-container w3-col s12 m4 l4 w3-section">
+                          <div class="card" style="width: 10rem; height: 10rem;">
+                            <div class="card-body hover_trans_grey">
+                              <h5 class="card-title">{{course.nm}}</h5>
+                              <button type="submit" class="btn btn-primary w3-button" name="s" value="{{course.pk}}">Go to Course</button>
+                            </div>
+                          </div>
+                          
+                           
+                          </div>
+                        
+                        
+                      </form>
+                    {% endfor %}</div> <br>
+                    <br>
+
+                    {% if perms.course.add_course %}
+                <div class="col-md-12"><label class="labels">Created Courses</label>
+                    {% for data in creations %}
+                    <form action="/course/" method="GET">
+                        <div class="w3-display-container w3-col s12 m4 l4 w3-section">
+                          <div class="card" style="width: 10rem; height: 10rem;">
+                            <div class="card-body hover_trans_grey">
+                              <h5 class="card-title">{{data.title}}</h5>
+                              <button type="submit" class="btn btn-primary w3-button" name="s" value="{{data.pk}}">Go to Course</button>
+                            </div>
+                          </div>
+                          
+                           
+                          </div>
+                        
+                        
+                      </form>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+{% endfor %}
+{% endblock %}

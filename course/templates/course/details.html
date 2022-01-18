@@ -1,0 +1,32 @@
+{% extends "course/base.html" %}
+{% load static %}
+{% block content %}
+
+<br>
+<form action="/details/" method="post">
+  {% csrf_token %}
+  <h3 class="w3-center">
+      Submit Your Details
+  </h3>
+
+  <h6>&#128102; ENTER YOUR NAME</h6>
+  <input type='text' placeholder="First Name" name="fn" required='required'>
+  <input type="text" placeholder="Last Name" name="ln" required='required'>
+  <h6>&#128231; ENTER YOUR EMAIL</h6>
+  <input type="email" placeholder="example@example.com" name="email" required='required'>
+  <h6>&#128231; TELL YOUR DATE OF BIRTH</h6>
+  <input type="date" name="dob" required='required'>
+  <h6>&#9742; ENTER YOUR CITY</h6>
+  <input type="text" placeholder="Enter the city you live in" name="city" required="required">
+  
+  <h6>&#128172; ENTER YOUR STATE</h6>
+  <textarea type="text" name="state" placeholder="Enter the state you live in" required="required"></textarea>
+  <h6>&#128172; Tell Us about Yourself</h6>
+  <textarea type="text" name="about" placeholder="Mention your Educational details, etc. This section will be shoun publically on your profile" required="required"></textarea>
+  <center>
+      <button type="submit">&#128260; Submit</button>
+      <button type="reset">&#128260; Reset</button>
+  </center>
+</form>
+  <script>CKEDITOR.replace('about');</script>
+{% endblock %}

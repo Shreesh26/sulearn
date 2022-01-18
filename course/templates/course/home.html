@@ -1,0 +1,96 @@
+{% extends "course/base.html" %}
+{% load static %}
+{% block content %}
+<br><br>
+<section id="about" class="about">
+
+    <div class="container" data-aos="fade-up">
+      <div class="row gx-0">
+  
+        <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="content" style="background-color: rgba(105, 194, 253, 0.315); height: 80%;">
+            <div style="padding-left: 20px; padding-top: 40px;">
+            <h3 style="color: rgb(0, 174, 255);">About US</h3>
+            <h2 style="color: rgb(3, 0, 179);">BITS Pilani SULearn</h2>
+            <p>
+              SULearn is an Indian massive open online course provider created by Shreesh Gupta. It hosts online certification courses in a wide range of disciplines to a worldwide student body, including some courses at no charge. It also conducts research into learning based on how people use its platform.
+            </p>
+            <div class="text-center text-lg-start">
+              <a href="/course_page/"
+                class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center btn btn-outline-info">
+                <span>Browse Courses</span>
+                <!-- <i class="bi bi-arrow-right"></i> -->
+              </a>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        
+  
+        <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+          <img
+            src="https://www.northeastern.edu/graduate/blog/wp-content/uploads/2016/08/Online-Learning-Social-1.jpg"
+            class="img-fluid" alt="" style="
+              height: 100%;
+              width: 100%;
+              border-radius: 5px;
+              object-fit: cover;
+          ">
+        </div>
+  
+      </div>
+    </div>
+  
+  </section>
+  <br><br>
+
+  <section id="about" class="about">
+
+    <div class="container" data-aos="fade-up">
+      <div class="row gx-0">
+        <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
+            <img
+              src="https://www.northeastern.edu/graduate/blog/wp-content/uploads/2016/08/Online-Learning-Social-1.jpg"
+              class="img-fluid" alt="" style="
+                height: 100%;
+                width: 100%;
+                border-radius: 5px;
+                object-fit: cover;
+            ">
+          </div>
+  
+        <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="content" style="background-color: rgba(105, 194, 253, 0.315); height: 80%;">
+            <div style="padding-left: 20px; padding-top: 40px;">
+            <h3 style="color: rgb(0, 174, 255);">Join US</h3>
+            <h2 style="color: rgb(3, 0, 179);">Become a Course Creator</h2>
+            <p>
+              Are you a course creator, and wish to share your courses with students. Upload it on SULearn in modules along with quizzes and tests. Join our army of course creators today. 
+            </p>
+            <div class="text-center text-lg-start">
+              {% if request.user.is_authenticated %}
+              <a href="educator/"
+                class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center btn btn-outline-info">
+                <span>Become an Educator</span>
+                <!-- <i class="bi bi-arrow-right"></i> -->
+              </a>
+              {% else %}
+              <a href="accounts/login/"
+                class="btn-read-more d-inline-flex align-items-center justify-content-center align-self-center btn btn-outline-info">
+                <span>login</span>
+
+              {% endif %}
+            </div>
+            </div>
+          </div>
+        </div>
+  
+        
+  
+      </div>
+    </div>
+  
+  </section>
+
+{% endblock %}
